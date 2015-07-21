@@ -6,8 +6,8 @@ Cumulative Distribution Function
 
 The [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) for a [Cauchy](https://en.wikipedia.org/wiki/Cauchy_distribution) random variable is
 
-<div class="equation" align="center" data-raw-text="" data-equation="eq:cdf">
-	<img src="" alt="Cumulative distribution function for a Cauchy distribution.">
+<div class="equation" align="center" data-raw-text="F(x; x_0,\gamma)=\frac{1}{\pi} \arctan\left(\frac{x-x_0}{\gamma}\right)+\frac{1}{2} " data-equation="eq:cdf">
+	<img src="https://cdn.rawgit.com/distributions-io/cauchy-cdf/0f2674b2dadec26ffe438b5153df2c99ab8eed62/docs/img/eqn.svg" alt="Cumulative distribution function for a Cauchy distribution.">
 	<br>
 </div>
 
@@ -40,15 +40,15 @@ var matrix = require( 'dstructs-matrix' ),
 	i;
 
 out = cdf( 1 );
-// returns
+// returns ~0.75
 
 x = [ -4, -2, 0, 2, 4 ];
 out = cdf( x );
-// returns [...]
+// returns [ ~0.078, ~0.148, ~0.5, ~0.852, ~0.922 ]
 
 x = new Float32Array( x );
 out = cdf( x );
-// returns Float64Array( [...] )
+// returns Float64Array( [~0.078,~0.148,~0.5,~0.852,~0.922] )
 
 x = new Float32Array( 6 );
 for ( i = 0; i < 6; i++ ) {
@@ -63,9 +63,9 @@ mat = matrix( x, [3,2], 'float32' );
 
 out = cdf( mat );
 /*
-	[
-
-	   ]
+	[ ~0.102 ~0.14
+	  ~0.25  ~0.5
+	  ~0.75  ~0.852 ]
 */
 ```
 
@@ -88,7 +88,7 @@ var out = cdf( x, {
 	'gamma': 9,
 	'x0': 8
 });
-// returns [...]
+// returns [ ~0.205, ~0.233, ~0.269, ~0.313, ~0.367]
 ```
 
 For non-numeric `arrays`, provide an accessor `function` for accessing `array` values.
@@ -109,7 +109,7 @@ function getValue( d, i ) {
 var out = cdf( data, {
 	'accessor': getValue
 });
-// returns [...]
+// returns [ ~0.078, ~0.148, ~0.5, ~0.852, ~0.922 ]
 ```
 
 
@@ -130,11 +130,11 @@ var out = cdf( data, {
 });
 /*
 	[
-		{'x':[0,]},
-		{'x':[1,]},
-		{'x':[2,]},
-		{'x':[3,]},
-		{'x':[4,]},
+		{'x':[0,~0.078]},
+		{'x':[1,~0.148]},
+		{'x':[2,~0.5]},
+		{'x':[3,~0.852]},
+		{'x':[4,~0.922]},
 	]
 */
 
@@ -175,7 +175,7 @@ x = [ -4, -2, 0, 2, 4 ];
 out = cdf( x, {
 	'copy': false
 });
-// returns [...]
+// returns [~0.078,~0.148,~0.5,~0.852,~0.922]
 
 bool = ( x === out );
 // returns true
@@ -195,9 +195,9 @@ out = cdf( mat, {
 	'copy': false
 });
 /*
-	[
-
-	   ]
+	[ ~0.102 ~0.14
+	  ~0.25  ~0.5
+	  ~0.75  ~0.852 ]
 */
 
 bool = ( mat === out );
@@ -251,6 +251,20 @@ bool = ( mat === out );
 		]
 	*/
 	```
+
+## Implementation
+
+Instead of evaluating the standard form of the CDF, this modules computes the CDF as
+
+<div class="equation" align="center" data-raw-text="F(x; x_0,\gamma)=
+\begin{cases} - \arctan\left(\frac{\gamma}{x-x_0}\right) \frac{1}{\pi} &amp; \text{ for } x < x_0 \\
+1 + \arctan\left(\frac{\gamma}{x-x_0}\right) \frac{1}{\pi} & \text{ for } x \ge x_0
+\end{cases}" data-equation="eq:cdf_implementation">
+	<img src="https://cdn.rawgit.com/distributions-io/cauchy-cdf/tree/af6c7bb02f0520e0eeb6aff662fec55316010b5f/docs/img" alt="Alternative form of the cumulative distribution function for a Cauchy distribution.">
+	<br>
+</div>
+
+which has the benefit of avoiding rounding erros as `x` becomes very large. This formula follows from the fact that for `x<0`, we have `atan(x) = -π/2 - atan(1/x)`.
 
 ## Examples
 
