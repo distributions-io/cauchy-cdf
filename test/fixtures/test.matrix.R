@@ -4,7 +4,7 @@ library( jsonlite )
 gamma = 1
 x0 = 0
 x = 0:24
-y = pcauchy( x, gamma,x0 )
+y = pcauchy( x, x0, gamma )
 
 cat( y, sep = ",\n" )
 

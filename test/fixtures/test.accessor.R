@@ -1,10 +1,10 @@
 options( digits = 16 )
 library( jsonlite )
 
-gamma = 1
+gamma = 10
 x0 = 0
 x = seq( -1000, 1000, 0.5 )
-y = pcauchy( x, gamma,x0 )
+y = pcauchy( x, x0, gamma )
 
 cat( y, sep = ",\n" )
 
