@@ -1,6 +1,6 @@
 Cumulative Distribution Function
 ===
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url] [![Dependencies][dependencies-image]][dependencies-url]
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependencies][dependencies-image]][dependencies-url]
 
 > [Cauchy](https://en.wikipedia.org/wiki/Cauchy_distribution) distribution [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function).
 
@@ -11,7 +11,7 @@ The [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_
 	<br>
 </div>
 
-where `gamma` is the scale parameter and `x0` is the location parameter.
+where `gamma > 0` is the scale parameter and `x0` is the location parameter.
 
 ## Installation
 
@@ -79,7 +79,7 @@ The function accepts the following `options`:
 *	__path__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path.
 *	__sep__: [deepget](https://github.com/kgryte/utils-deep-get)/[deepset](https://github.com/kgryte/utils-deep-set) key path separator. Default: `'.'`.
 
-A [Cauchy](https://en.wikipedia.org/wiki/Cauchy_distribution) distribution is a function of 2 parameter(s): `gamma`(scale parameter) and `x0`(location parameter). By default, `gamma` is equal to `1` and `x0` is equal to `0`. To adjust either parameter, set the corresponding option(s).
+A [Cauchy](https://en.wikipedia.org/wiki/Cauchy_distribution) distribution is a function of two parameters: `gamma > 0`(scale parameter) and `x0`(location parameter). By default, `gamma` is equal to `1` and `x0` is equal to `0`. To adjust either parameter, set the corresponding option.
 
 ``` javascript
 var x = [ -4, -2, 0, 2, 4 ];
@@ -378,8 +378,8 @@ Copyright &copy; 2015. The [Compute.io](https://github.com/compute-io) Authors.
 [travis-image]: http://img.shields.io/travis/distributions-io/cauchy-cdf/master.svg
 [travis-url]: https://travis-ci.org/distributions-io/cauchy-cdf
 
-[coveralls-image]: https://img.shields.io/coveralls/distributions-io/cauchy-cdf/master.svg
-[coveralls-url]: https://coveralls.io/r/distributions-io/cauchy-cdf?branch=master
+[codecov-image]: https://img.shields.io/codecov/c/github/distributions-io/cauchy-cdf/master.svg
+[codecov-url]: https://codecov.io/github/distributions-io/cauchy-cdf?branch=master
 
 [dependencies-image]: http://img.shields.io/david/distributions-io/cauchy-cdf.svg
 [dependencies-url]: https://david-dm.org/distributions-io/cauchy-cdf
