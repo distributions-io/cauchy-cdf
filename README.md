@@ -260,7 +260,7 @@ Instead of evaluating the standard form of the CDF, this modules computes the CD
 \begin{cases} - \arctan\left(\frac{\gamma}{x-x_0}\right) \frac{1}{\pi} &amp; \text{ for } x < x_0 \\
 1 + \arctan\left(\frac{\gamma}{x-x_0}\right) \frac{1}{\pi} & \text{ for } x \ge x_0
 \end{cases}" data-equation="eq:cdf_implementation">
-	<img src="https://cdn.rawgit.com/distributions-io/cauchy-cdf/tree/af6c7bb02f0520e0eeb6aff662fec55316010b5f/docs/img" alt="Alternative form of the cumulative distribution function for a Cauchy distribution.">
+	<img src="https://cdn.rawgit.com/distributions-io/cauchy-cdf/b26af6ca8d53c534d4dfed9910339fc275fcb624/docs/img/eqn2.svg" alt="Alternative form of the cumulative distribution function for a Cauchy distribution.">
 	<br>
 </div>
 
